@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="chat.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <main id="chat_screen">
+            <section id="chat_screen_bar">
+                <div id="user">
+                    <div class="user_column">
+                        <div id="user_img"></div>
+                    </div>
+                    <div class="user_column">
+                        <p id="user_name">춘식이</p>
+                        <p id="user_count">2</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <form id="chat_form">
+            <section id="chat_form_field">
+                <textarea id="chat_form_msg" placeholder="안녕! 반가워 춘식아"></textarea>
+                <input type="submit" value="전송" id="chat_form_btn">
+            </section>
+        </form>
+    </div>
+</body>
+</html>

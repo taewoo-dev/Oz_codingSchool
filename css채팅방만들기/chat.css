@@ -1,0 +1,90 @@
+ /* 1. 전체구조 셋팅 */
+
+ *{
+    box-sizing: border-box;
+    font-family: "Nanum Pen Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+      
+ }
+ html{
+    height: 100% ;
+ }
+ body{
+    height: 100%; 
+    margin: 0;
+ }
+
+ #container{
+    height: 100%;
+    background-color: #607d8b ;
+ }
+
+ /* 2.스크린 크기 조정 */
+
+ #chat_screen{
+    height: calc(100% - 120px);  
+ }
+
+ /* 3.user 정보 구현 */
+
+ #user{
+    background-color: #fdf2d2;
+    padding: 15px;
+    height: 80px;
+ }
+ .user_column{
+    float: left;
+ }
+ #user_img{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #607d8b;
+    background-image: url(images/춘식이.jpeg);
+    background-size: 50px 50px;
+ }
+ #user_name, #user_count {
+    margin: 5px;
+ }
+
+ #user_count {
+    font-size: 12px;
+    color: gray;
+ }
+
+ /* 4.  채팅 입력창 */
+ #chat_form {
+    height: 120px ;
+    background-color: #fdf2d2;
+ }
+ #chat_form_field{
+    height: 120px;
+ }
+ #chat_form_msg{
+    float: left;
+    width: calc(100% - 120px);
+    height: 120px;
+    border-radius: 10px;
+    border: 3px solid #e6f7cf;
+    resize: none;
+    font-size: 20px;
+    padding: 10px; 
+    background-color: #f0f8ff;
+ }
+ #chat_form_btn{
+    float: right;
+    background-color: #fdf2d2;
+    width: 120px;
+    height: 120px;
+    border: 4px solid #d2e8bc;
+    border-radius: 10px;
+    font-size: 18px;
+ }
+ #chat_form_msg:focus {
+    outline: none;
+ }
+ #chat_form_btn:active{
+    background-color: #fde99f;
+ }
