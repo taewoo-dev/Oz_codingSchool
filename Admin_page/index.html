@@ -4,8 +4,8 @@
     <title>Admin Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
-<body>
-    <div class="container row cols-12 mx-auto">
+<body class="bg-secondary bg-gradient">
+    <div class="container row cols-12 mx-auto d-flex justify-content-between">
         <h3 class="mt-5 mb-3 col-3">신규 등록 상품</h3>
          <div class="mt-5 mb-3 col-5">
          </div>
@@ -47,12 +47,13 @@
             </div>
             <div class="col-auto">
                 <!-- 조회버튼 코드를 넣어주세요 -->
-                <button type="button" class="btn btn-primary">조회</button>
+                <button type="button" id="inquiry_btn" class="btn btn-light">조회</button>
             </div>
         </form>
     </div>
-    <div class="container mt-3">
-        <table class="table table-sm table-striped">
+    <div class="container mt-3 mb-3">
+        <div class="container mt-3 mb-3 bg-secondary border border-secondary-subtle border-4 rounded-3">
+        <table class="table table-sm table-striped mt-3 border border-4 rounded-3">
             <thead>
                 <!-- 열의 속성값을 나타내는 코드를 작성해주세요 (예 : 카테고리, 브랜드, 상품명, 가격) -->
                 <tr>
@@ -115,6 +116,7 @@
       const darkmode_toggle_element = document.querySelector('[data-bs-theme]');
       let darkmode_toggle_flag = 0;
       const dark_btn = document.getElementById("dark_btn");
+      const inquiry_btn = document.getElementById("inquiry_btn");
 
       dark_btn.addEventListener('click',function(){
         if(darkmode_toggle_flag === 0){
@@ -123,6 +125,8 @@
             dark_btn.innerText = "Light"
             dark_btn.classList.remove("btn-dark");
             dark_btn.classList.add("btn-light");
+            inquiry_btn.classList.add("btn-dark");
+            dark_btn.classList.remove("btn-dark");
         }
         else if(darkmode_toggle_flag === 1){
             darkmode_toggle_flag = 0;
@@ -130,18 +134,12 @@
             dark_btn.innerText = "Dark"
             dark_btn.classList.add("btn-dark");
             dark_btn.classList.remove("btn-light");
+            inquiry_btn.classList.remove("btn-dark");
+            dark_btn.classList.add("btn-dark");
         }  
       })
 
-      // go join_form
-      const join_btn = document.getElementById("join_btn");
       
-
-
-      
-
-      
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
