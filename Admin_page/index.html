@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="light">
+<head>
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container row cols-12 mx-auto">
+        <h3 class="mt-5 mb-3 col-3">신규 등록 상품</h3>
+         <div class="mt-5 mb-3 col-5">
+         </div>
+            <!-- 현재 시간 타이머 -->
+        <div class="mt-5 mb-3 col-2">
+            <input id="timer" type="text" class="form-control" placeholder="시간">
+        </div>
+        <div class="mt-5 mb-3 col-2 text-end">
+            <!-- darkmode  & lightmode 버튼-->
+            <button id="dark_btn" type="button" class="btn btn-dark">Dark</button>
+            <!-- 회원가입 버튼 -->
+            <button id="join_btn" type="button" class="btn btn-secondary">
+                <a href="join.html" style="text-decoration: none; color: inherit;">회원가입</a></button>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <form class="row row-cols-lg-auto g-3 align-items-center">      
+            <div class="col-12">
+              <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+              <select class="form-select" id="inlineFormSelectPref">
+                <!-- 카테고리 셀렉트 코드를 넣어주세요-->
+                <option selected>카테고리</option>
+                <option value="1">상의</option>
+                <option value="2">하의</option>
+                <option value="3">신발</option>
+                <option value="4">패션잡화</option>
+              </select>
+            </div>
+            <div class="col-12">
+                <select class="form-select" id="gender_select">
+                    <option selected>성별</option>
+                    <option value="1">남자</option>
+                    <option value="2">여자</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <!-- input 입력창 코드를 넣어주세요 -->
+                 <input type="text" class="form-control" placeholder="제품명을 입력해주세요">
+            </div>
+            <div class="col-auto">
+                <!-- 조회버튼 코드를 넣어주세요 -->
+                <button type="button" class="btn btn-primary">조회</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mt-3">
+        <table class="table table-sm table-striped">
+            <thead>
+                <!-- 열의 속성값을 나타내는 코드를 작성해주세요 (예 : 카테고리, 브랜드, 상품명, 가격) -->
+                <tr>
+                    <th scope="col">카테고리</th>
+                    <th scope="col">브랜드</th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">가격</th>
+                  </tr>
+            </thead>
+            <tbody id="data-table">
+                <!-- 추후 크롤링한 데이터가 들어가는 자리 -->
+            </tbody>
+        </table>
+    </div>
+    <!-- 페이지 네이션 코드를 넣어주세요 -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+   <script>
+      // 크롤링한 데이터를 아래와 같은 형태의 객체 배열로 가정합니다.
+      // 추후 데이터베이스에 있는 데이터를 쿼리문으로 불러 올 수 있게 쿼리르 작성해 볼 수 있음
+      const data = [
+          { category: "상의", brand: 'Supreme', product: '슈프림 박스로고 후드티', price: '390,000' },
+          { category: "하의", brand: 'DIESEL', product: '디젤 트랙 팬츠', price: '188,000' },
+          { category: "신발", brand: 'Nike', product: '에어포스 1', price: '137,000' },
+          { category: "패션잡화", brand: 'Music&Goods', product: '빵빵이 키링', price: '29,000' },
+          // ...
+      ];
+      
+      const dataTable = document.getElementById('data-table');
+      
+      data.forEach((item) => {
+          const row = dataTable.insertRow();
+          row.insertCell(0).innerHTML = item.category;
+          row.insertCell(1).innerHTML = item.brand;
+          row.insertCell(2).innerHTML = item.product;
+          row.insertCell(3).innerHTML = item.price;
+      });
+
+      // timer
+      const timer = document.getElementById("timer");
+      
+      function get_time(){
+        const time = new Date();
+        const hours = String(time.getHours()).padStart(2,"0");
+        const minutes = String(time.getMinutes()).padStart(2,"0");
+        const seconds = String(time.getSeconds()).padStart(2,"0");
+        timer.value = `현재시간 : ${hours}:${minutes}:${seconds}`;
+      }
+
+      setInterval(get_time,1000);
+
+      // dark & light mode 
+      const darkmode_toggle_element = document.querySelector('[data-bs-theme]');
+      let darkmode_toggle_flag = 0;
+      const dark_btn = document.getElementById("dark_btn");
+
+      dark_btn.addEventListener('click',function(){
+        if(darkmode_toggle_flag === 0){
+            darkmode_toggle_flag = 1;
+            darkmode_toggle_element.setAttribute('data-bs-theme', 'dark');
+            dark_btn.innerText = "Light"
+            dark_btn.classList.remove("btn-dark");
+            dark_btn.classList.add("btn-light");
+        }
+        else if(darkmode_toggle_flag === 1){
+            darkmode_toggle_flag = 0;
+            darkmode_toggle_element.setAttribute('data-bs-theme', 'light');
+            dark_btn.innerText = "Dark"
+            dark_btn.classList.add("btn-dark");
+            dark_btn.classList.remove("btn-light");
+        }  
+      })
+
+      // go join_form
+      const join_btn = document.getElementById("join_btn");
+      
+
+
+      
+
+      
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
