@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "yes24"
+version = "0.1.0"
+description = "yes24_crawling_project"
+authors = ["taewoo-dev <twin9774@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+webdriver-manager = "^4.0.1"
+selenium = "^4.22.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
