@@ -8,15 +8,15 @@ def main(banking_service: BankingService):
         if username == "종료":
             break
         
-        banking_service.find_user(username=username)
-        banking_service.user_menu(username=username)
+        banking_service.find_user(username=username) # 거래 시작 전 사용자 명단 확인
+        banking_service.user_menu(username=username) # 거래 시작 
 
 
 if __name__ == "__main__":
     
     banking_service = BankingService()
 
-    banking_service.add_user('홍길동')
-    banking_service.add_user('고길동')
+    banking_service.add_user('홍길동') # 사용자 추가
+    banking_service.add_user('고길동') 
 
     main(banking_service)

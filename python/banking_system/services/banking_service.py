@@ -2,21 +2,29 @@ from models.user import User
 from utils.exceptions import UserNotFoundError 
 
 class BankingService:
-
+    """
+    은행 서비스 클래스
+    매서드 : 사용자 추가, 사용자 검색, 사용자 메뉴
+    """
     
     def __init__(self) -> None:
         
         self._users = []
 
     def add_user(self, username: str) -> None:
+        """
+        사용자 추가 매서드
+        """
 
-        self._user = User(username)
-        self._users.append(self._user)
+        self._user = User(username) # 사용자를 생성
+        self._users.append(self._user) # users 리스트에 사용자 추가
 
     def find_user(self, username: str) -> User:
-
-        try:
-            for user in self._users:
+        """
+        사용자 검색 매서드
+        """
+        try: # 검색한 사용자가 목록에 없을 시 오류를 반환
+            for user in self._users: 
                 if user._username == username:
                     return user
             raise UserNotFoundError(username=username)
@@ -24,7 +32,11 @@ class BankingService:
             print(e)
 
     def user_menu(self, username: str) -> None:
-
+        """
+        실제 거래를 진행하는 Main 매서드
+        메뉴 : [입금, 출금, 잔고 확인, 거래 내역]
+        종료 입력 시 거래 종료
+        """
         for user in self._users:
             if user._username == username:
                 while True:
