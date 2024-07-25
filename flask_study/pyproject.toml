@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flask-study"
+version = "0.1.0"
+description = ""
+authors = ["taewoo-dev <twin9774@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask-restful = "^0.3.10"
+flask-smorest = "^0.44.0"
+marshmallow = "^3.21.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
