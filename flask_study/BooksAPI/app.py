@@ -12,7 +12,7 @@ app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger-ui"
 app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
 
 api = Api(app)
-api.register_blueprint(book_blp)
+api.register_blueprint(book_blp) # blueprint 등록
 
 if __name__ == '__main__':
     app.run(debug=True)
