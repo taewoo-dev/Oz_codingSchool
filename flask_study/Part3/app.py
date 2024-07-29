@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 from flask_smorest import Api
 from database.db import db
+from dotenv import load_dotenv
+import os
 
 from models.user import User
 from models.board import Board
@@ -8,9 +10,11 @@ from routes.users import user_blp
 from routes.boards import board_blp
 app = Flask(__name__)
 
+load_dotenv()  # .env 파일 로드
+
 # (1) flask app과 데이터베이스 연동
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1520528a@localhost/flask_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
 # (2) 데이터베이스를 ORM으로 이용할 수 있도록 설정
 db.init_app(app)
 
@@ -44,5 +48,5 @@ if __name__ == "__main__":
     with app.app_context():
         print("flask앱을 실행합니다")
         # models 폴더에 만든 데이터베이스 스키마를 통하여 테이블 생성
-        db.create_all()
+        db.create_all() # 데이터베이스의 테이블이 비어있을 경우에만 유효!!, 그렇지 않은 경우에는 마이그레이션을 통해 변경사항을 업데이트해야함
     app.run(debug=True)
