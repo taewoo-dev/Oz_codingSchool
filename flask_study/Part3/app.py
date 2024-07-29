@@ -4,8 +4,8 @@ from database.db import db
 
 from models.user import User
 from models.board import Board
-# from routes.users import user_blp
-# from routes.boards import board_blp
+from routes.users import user_blp
+from routes.boards import board_blp
 app = Flask(__name__)
 
 # (1) flask app과 데이터베이스 연동
@@ -26,8 +26,8 @@ app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-
 api = Api(app)
 
 
-# api.register_blueprint(user_blp)
-# api.register_blueprint(board_blp)
+api.register_blueprint(user_blp)
+api.register_blueprint(board_blp)
 
 # (5). route마다 뷰함수 설정
 @app.route("/manage-boards")
