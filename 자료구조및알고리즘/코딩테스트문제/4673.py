@@ -23,7 +23,7 @@ n을 d(n)의 생성자라고 한다. 위의 수열에서 33은 39의 생성자�
 10,000보다 작거나 같은 셀프 넘버를 한 줄에 하나씩 증가하는 순서로 출력한다.
 """
 result_set = set()
-num_set = set(range(1,101))
+num_set = set(range(1,10001))
 def func(n):
     answer = n
     num_1000,x = divmod(n,1000)
@@ -34,9 +34,7 @@ def func(n):
     answer = answer + x + y
     return answer
 
-# 반복문을 돌면서 function 결과 값이 나오면 그 수를 self_num_dict에 추가한다.
-# 만약 self_num_dict에 이미 숫자가 있다면 그 값을 self_num_dict에 추가한다.
-for i in range(1,100):
+for i in range(1,10001):
     result = func(i)
 
     if result not in result_set:
@@ -44,12 +42,9 @@ for i in range(1,100):
 
 self_num = list(num_set - result_set)
 self_num.sort()
-print(self_num)
+for i in self_num:
+    print(i)
     
         
 
     
-# for i in self_num_dict:
-#     if self_num_dict[i] == True:
-#         print(i)
-
